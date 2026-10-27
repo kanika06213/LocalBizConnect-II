@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - LocalBizConnect</title>
+    <meta name="description" content="Create a customer or seller account on LocalBizConnect.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">LocalBiz<span>Connect</span></span>
+            </a>
+
+            <div class="nav-auth" id="nav-auth-actions">
+                <a href="login.html" class="nav-link">Already have an account? Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Card -->
+    <main class="auth-page">
+        <div class="auth-card">
+            <div class="auth-header">
+                <span class="section-tag">Join LocalBizConnect</span>
+                <h1 class="auth-title">Create an Account</h1>
+                <p class="auth-subtitle">Select your account type and start connecting today.</p>
+            </div>
+
+            <form id="register-form">
+                <!-- Role Selector: Customer vs Seller (No Admin Option) -->
+                <div class="form-group">
+                    <label class="form-label">I want to join as a:</label>
+                    <div class="role-selector">
+                        <div class="role-option selected" id="role-customer-btn" onclick="selectRole('customer')">
+                            <span style="font-size: 1.25rem; display: block; margin-bottom: 0.25rem;">🛍️</span>
+                            <span>Customer</span>
+                            <small style="display: block; font-size: 0.75rem; color: #64748b; font-weight: normal;">Browse & review</small>
+                        </div>
+                        <div class="role-option" id="role-seller-btn" onclick="selectRole('seller')">
+                            <span style="font-size: 1.25rem; display: block; margin-bottom: 0.25rem;">🏪</span>
+                            <span>Seller / Tradesman</span>
+                            <small style="display: block; font-size: 0.75rem; color: #64748b; font-weight: normal;">List business & goods</small>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selected-role" value="customer">
+                </div>
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label class="form-label" for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" class="form-control" required placeholder="John Doe">
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="form-label" for="reg-email">Email Address</label>
+                    <input type="email" id="reg-email" class="form-control" required placeholder="john@example.com">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label class="form-label" for="reg-password">Password (min 6 characters)</label>
+                    <input type="password" id="reg-password" class="form-control" required minlength="6" placeholder="••••••••">
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label class="form-label" for="reg-confirm-password">Confirm Password</label>
+                    <input type="password" id="reg-confirm-password" class="form-control" required minlength="6" placeholder="••••••••">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="reg-submit-btn" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;">
+                    Create Account
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Already registered? <a href="login.html">Sign In here</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Redirect if already logged in
+        redirectIfLoggedIn();
+
+        let currentRole = "customer";
+
+        function selectRole(role) {
+            currentRole = role;
+            document.getElementById("selected-role").value = role;
+
+            const custBtn = document.getElementById("role-customer-btn");
+            const sellBtn = document.getElementById("role-seller-btn");
+
+            if (role === "customer") {
+                custBtn.classList.add("selected");
+                sellBtn.classList.remove("selected");
+            } else {
+                sellBtn.classList.add("selected");
+                custBtn.classList.remove("selected");
+            }
+        }
+
+        document.getElementById("register-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById("reg-submit-btn");
+
+            const name = document.getElementById("reg-name").value.trim();
+            const email = document.getElementById("reg-email").value.trim();
+            const password = document.getElementById("reg-password").value;
+            const confirmPassword = document.getElementById("reg-confirm-password").value;
+            const role = currentRole;
+
+            // Password confirmation check
+            if (password !== confirmPassword) {
+                showToast("Passwords do not match! Please check and try again.", "error");
+                return;
+            }
+
+            try {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Creating Account...";
+
+                // Real backend API: POST /api/users/register
+                const res = await api.post("/users/register", {
+                    name,
+                    email,
+                    password,
+                    role
+                });
+
+                showToast("Registration successful! Logging you in...", "success");
+
+                // Store token & user if returned directly
+                if (res.token && res.user) {
+                    localStorage.setItem("token", res.token);
+                    localStorage.setItem("user", JSON.stringify(res.user));
+                    setTimeout(() => {
+                        window.location.href = "dashboard.html";
+                    }, 800);
+                } else {
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 1000);
+                }
+            } catch (error) {
+                showToast(error.message || "Registration failed", "error");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Create Account";
+            }
+        });
+    </script>
+</body>
+</html>

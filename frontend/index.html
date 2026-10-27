@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalBizConnect - Your Local Needs. One Simple Connection.</title>
+    <meta name="description" content="Discover and connect with trusted local businesses, plumbers, electricians, carpenters, grocery stores, medicine shops and food joints in your neighborhood.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">LocalBiz<span>Connect</span></span>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="businesses.html" class="nav-link">Businesses</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-auth" id="nav-auth-actions">
+                <!-- Dynamically populated by auth.js -->
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="register.html" class="nav-btn nav-btn-primary">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Database Warning Banner (shown if backend DB is not configured) -->
+    <div class="container" id="db-alert-container" style="margin-top: 1.5rem; display: none;"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span>📍 Hyperlocal Community Directory</span>
+                </div>
+                <h1 class="hero-title">
+                    Your Local Needs. <br>
+                    <span class="gradient-text">One Simple Connection.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Find and connect with trusted neighborhood businesses, certified plumbers, expert carpenters, reliable electricians, fresh grocery stores, and local food spots.
+                </p>
+
+                <!-- Quick Search Bar -->
+                <form class="hero-search-bar" id="hero-search-form">
+                    <input type="text" id="hero-search-input" class="hero-search-input" placeholder="Search businesses, plumbers, pizza, clinic...">
+                    <select id="hero-search-category" class="hero-search-select">
+                        <option value="">All Categories</option>
+                        <option value="Food">Food</option>
+                        <option value="Medicine">Medicine</option>
+                        <option value="Carpenter">Carpenter</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="Electrician">Electrician</option>
+                        <option value="Grocery">Grocery</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Find</button>
+                </form>
+
+                <div class="hero-actions">
+                    <a href="businesses.html" class="btn btn-primary btn-lg">Explore Businesses</a>
+                    <a href="register.html" class="btn btn-outline btn-lg">Get Started</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>6+</h3>
+                        <p>Core Categories</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Verified Profiles</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Direct Access</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-card-stack">
+                    <div class="hero-floating-card">
+                        <div class="floating-icon" style="background: #ffedd5; color: #f97316;">🍔</div>
+                        <div>
+                            <h4 style="font-weight: 700;">Fresh Local Dining</h4>
+                            <p style="font-size: 0.85rem; color: #64748b;">Discover nearby cafes, bakeries & family diners</p>
+                        </div>
+                    </div>
+                    <div class="hero-floating-card" style="margin-left: 2rem;">
+                        <div class="floating-icon" style="background: #e0f2fe; color: #0284c7;">🔧</div>
+                        <div>
+                            <h4 style="font-weight: 700;">Home Repair Specialists</h4>
+                            <p style="font-size: 0.85rem; color: #64748b;">Licensed plumbers and electricians at your doorstep</p>
+                        </div>
+                    </div>
+                    <div class="hero-floating-card">
+                        <div class="floating-icon" style="background: #dcfce7; color: #10b981;">🛒</div>
+                        <div>
+                            <h4 style="font-weight: 700;">Neighborhood Groceries</h4>
+                            <p style="font-size: 0.85rem; color: #64748b;">Farm fresh produce & daily household supplies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Categories Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Essential Services</span>
+                <h2 class="section-title">Explore by Category</h2>
+                <p class="section-subtitle">
+                    Select a service category to discover top-rated local providers in your neighborhood.
+                </p>
+            </div>
+
+            <div class="category-grid">
+                <!-- Food -->
+                <div class="category-card" onclick="window.location.href='businesses.html?category=Food'">
+                    <span class="category-icon">🍔</span>
+                    <h3 class="category-name">Food</h3>
+                    <p style="font-size: 0.82rem; color: #64748b;">Restaurants, bakeries, cafes & street food</p>
+                    <span class="category-action">Browse Food →</span>
+                </div>
+
+                <!-- Medicine -->
+                <div class="category-card" onclick="window.location.href='businesses.html?category=Medicine'">
+                    <span class="category-icon">💊</span>
+                    <h3 class="category-name">Medicine</h3>
+                    <p style="font-size: 0.82rem; color: #64748b;">Pharmacies, chemists & healthcare</p>
+                    <span class="category-action">Browse Medicine →</span>
+                </div>
+
+                <!-- Carpenter -->
+                <div class="category-card" onclick="window.location.href='businesses.html?category=Carpenter'">
+                    <span class="category-icon">🔨</span>
+                    <h3 class="category-name">Carpenter</h3>
+                    <p style="font-size: 0.82rem; color: #64748b;">Woodwork, custom furniture & repair</p>
+                    <span class="category-action">Browse Carpenters →</span>
+                </div>
+
+                <!-- Plumber -->
+                <div class="category-card" onclick="window.location.href='businesses.html?category=Plumber'">
+                    <span class="category-icon">🔧</span>
+                    <h3 class="category-name">Plumber</h3>
+                    <p style="font-size: 0.82rem; color: #64748b;">Pipeline, drainage & fixture installations</p>
+                    <span class="category-action">Browse Plumbers →</span>
+                </div>
+
+                <!-- Electrician -->
+                <div class="category-card" onclick="window.location.href='businesses.html?category=Electrician'">
+                    <span class="category-icon">⚡</span>
+                    <h3 class="category-name">Electrician</h3>
+                    <p style="font-size: 0.82rem; color: #64748b;">Wiring, electrical repair & appliance care</p>
+                    <span class="category-action">Browse Electricians →</span>
+                </div>
+
+                <!-- Grocery -->
+                <div class="category-card" onclick="window.location.href='businesses.html?category=Grocery'">
+                    <span class="category-icon">🛒</span>
+                    <h3 class="category-name">Grocery</h3>
+                    <p style="font-size: 0.82rem; color: #64748b;">Supermarkets, fresh fruits & provisions</p>
+                    <span class="category-action">Browse Grocery →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Businesses Preview Section -->
+    <section class="section" style="background: #ffffff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Verified Providers</span>
+                <h2 class="section-title">Featured Local Businesses</h2>
+                <p class="section-subtitle">Real-time local listings fetched directly from our live backend.</p>
+            </div>
+
+            <!-- Dynamic Container populated by main.js -->
+            <div id="featured-businesses-container" class="business-grid">
+                <div class="state-container" style="grid-column: 1 / -1;">
+                    <div class="spinner"></div>
+                    <p class="state-desc">Loading live businesses from backend...</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="businesses.html" class="btn btn-outline btn-lg">View All Businesses & Services →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container" style="max-width: 900px; text-align: center;">
+            <span class="section-tag">About LocalBizConnect</span>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Empowering Neighborhood Commerce</h2>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem;">
+                <strong>LocalBizConnect</strong> was created with a single mission: to bridge the gap between skilled local craftsmen, neighborhood vendors, and the residents who need their everyday services. Whether you're dealing with an urgent plumbing leak, looking for fresh groceries, or needing custom woodwork, we connect you directly without exorbitant middleman fees.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; text-align: left; margin-top: 2rem;">
+                <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                    <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">🤝</div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.35rem;">Community First</h4>
+                    <p style="font-size: 0.88rem; color: #64748b;">Support local families and tradespeople directly in your neighborhood.</p>
+                </div>
+                <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                    <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">⭐</div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.35rem;">Verified Reviews</h4>
+                    <p style="font-size: 0.88rem; color: #64748b;">Genuine feedback and 5-star ratings from verified community members.</p>
+                </div>
+                <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                    <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">⚡</div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.35rem;">Fast & Direct</h4>
+                    <p style="font-size: 0.88rem; color: #64748b;">Instant phone and email contacts without waiting for dispatch centers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact" style="background: #f1f5f9;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get in Touch</span>
+                <h2 class="section-title">Contact Support & Inquiries</h2>
+                <p class="section-subtitle">Have questions or want to register a community service? Send us a message.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 960px; margin: 0 auto;">
+                <div style="background: #fff; padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+                    <h3 style="font-weight: 800; margin-bottom: 1.25rem;">Send a Message</h3>
+                    <form id="contact-form" onsubmit="event.preventDefault(); showToast('Thank you! Your message has been received.', 'success'); this.reset();">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-control" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-control" required placeholder="Business inquiry / assistance">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" rows="4" required placeholder="Describe your inquiry..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 1.25rem; justify-content: center;">
+                    <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); display: flex; align-items: center; gap: 1rem;">
+                        <div class="contact-card-icon">📍</div>
+                        <div>
+                            <h4 style="font-weight: 700;">Location</h4>
+                            <p style="font-size: 0.88rem; color: #64748b;">LocalBizConnect Hub, City Center, Sector 4</p>
+                        </div>
+                    </div>
+                    <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); display: flex; align-items: center; gap: 1rem;">
+                        <div class="contact-card-icon">📞</div>
+                        <div>
+                            <h4 style="font-weight: 700;">Phone Support</h4>
+                            <p style="font-size: 0.88rem; color: #64748b;">+91 98765 43210 (Mon - Sat, 9am - 8pm)</p>
+                        </div>
+                    </div>
+                    <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); display: flex; align-items: center; gap: 1rem;">
+                        <div class="contact-card-icon">✉️</div>
+                        <div>
+                            <h4 style="font-weight: 700;">Email</h4>
+                            <p style="font-size: 0.88rem; color: #64748b;">support@localbizconnect.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="footer-brand">
+                        <span class="brand-icon">⚡</span>
+                        <span>LocalBizConnect</span>
+                    </a>
+                    <p class="footer-desc">
+                        Connecting verified neighborhood businesses, certified tradespeople, and community residents seamlessly.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="businesses.html">Browse Businesses</a></li>
+                        <li><a href="register.html">Seller Registration</a></li>
+                        <li><a href="login.html">Member Login</a></li>
+                        <li><a href="dashboard.html">Account Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="businesses.html?category=Food">Food & Dining</a></li>
+                        <li><a href="businesses.html?category=Medicine">Medicine & Pharmacy</a></li>
+                        <li><a href="businesses.html?category=Carpenter">Carpenters</a></li>
+                        <li><a href="businesses.html?category=Plumber">Plumbers</a></li>
+                        <li><a href="businesses.html?category=Electrician">Electricians</a></li>
+                        <li><a href="businesses.html?category=Grocery">Grocery Stores</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Backend Status</h4>
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
+                        Node.js + Express API: <strong style="color: #10b981;">Online (Port 5000)</strong>
+                    </p>
+                    <p style="font-size: 0.85rem; color: #94a3b8;" id="footer-db-status">
+                        MongoDB Status: Checking...
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 LocalBizConnect. All rights reserved. Crafted for college project demo.</p>
+                <p>HTML5 • CSS3 • Vanilla JavaScript • Express • MongoDB</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

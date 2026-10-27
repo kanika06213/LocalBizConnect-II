@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Details - LocalBizConnect</title>
+    <meta name="description" content="View business details, offered services and products, customer reviews and ratings on LocalBizConnect.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">LocalBiz<span>Connect</span></span>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="businesses.html" class="nav-link">Businesses</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-auth" id="nav-auth-actions">
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="register.html" class="nav-btn nav-btn-primary">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+        
+        <!-- Breadcrumb Navigation -->
+        <nav style="margin-bottom: 1.5rem; font-size: 0.88rem; color: var(--text-secondary);">
+            <a href="index.html">Home</a> &nbsp;/&nbsp;
+            <a href="businesses.html">Businesses</a> &nbsp;/&nbsp;
+            <span id="breadcrumb-current-business" style="color: var(--text-primary); font-weight: 600;">Business Details</span>
+        </nav>
+
+        <!-- Dynamic Container populated by business-details.js -->
+        <div id="business-details-container">
+            <div class="state-container">
+                <div class="spinner"></div>
+                <h3 class="state-title">Loading Business Details...</h3>
+                <p class="state-desc">Fetching profile, products, and customer reviews from backend.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding-top: 0;">
+                <p>© 2026 LocalBizConnect. All rights reserved.</p>
+                <p><a href="businesses.html" style="color: #94a3b8;">← Back to Businesses</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/business-details.js"></script>
+</body>
+</html>

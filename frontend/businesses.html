@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Businesses & Services - LocalBizConnect</title>
+    <meta name="description" content="Explore verified local food, medicine, carpentry, plumbing, electrical, and grocery providers in your community.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">LocalBiz<span>Connect</span></span>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="businesses.html" class="nav-link active">Businesses</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-auth" id="nav-auth-actions">
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="register.html" class="nav-btn nav-btn-primary">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container" style="padding-top: 2.5rem; padding-bottom: 4rem;">
+        
+        <!-- Page Title & Header -->
+        <div style="margin-bottom: 2rem;">
+            <span class="section-tag">Community Directory</span>
+            <h1 style="font-size: 2.4rem; font-weight: 800; color: var(--text-primary);">
+                Explore Local Businesses & Trades
+            </h1>
+            <p style="color: var(--text-secondary); font-size: 1.05rem;">
+                Browse real neighborhood vendors, search by name or service, and filter by verified trade categories.
+            </p>
+        </div>
+
+        <!-- Database Notice if unconfigured -->
+        <div id="businesses-db-alert" style="display: none;"></div>
+
+        <!-- Toolbar: Search & Category Filter Pills -->
+        <section class="toolbar-section">
+            <div class="search-row">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="business-search-input" placeholder="Search by name, address, keywords (e.g. pizza, leak, wiring)...">
+                </div>
+                <button id="search-btn" class="btn btn-primary">Search</button>
+                <button id="reset-filter-btn" class="btn btn-outline" title="Reset all filters">Reset</button>
+            </div>
+
+            <!-- Category Pills -->
+            <div class="category-pills" id="category-pills">
+                <button class="pill-btn active" data-category="All">All Categories</button>
+                <button class="pill-btn" data-category="Food">🍔 Food</button>
+                <button class="pill-btn" data-category="Medicine">💊 Medicine</button>
+                <button class="pill-btn" data-category="Carpenter">🔨 Carpenter</button>
+                <button class="pill-btn" data-category="Plumber">🔧 Plumber</button>
+                <button class="pill-btn" data-category="Electrician">⚡ Electrician</button>
+                <button class="pill-btn" data-category="Grocery">🛒 Grocery</button>
+            </div>
+        </section>
+
+        <!-- Result Status Counter -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <p id="results-count" style="font-size: 0.95rem; font-weight: 600; color: var(--text-secondary);">
+                Loading directory...
+            </p>
+        </div>
+
+        <!-- Business Cards Container (Live data from /api/businesses) -->
+        <div id="businesses-container" class="business-grid">
+            <div class="state-container" style="grid-column: 1 / -1;">
+                <div class="spinner"></div>
+                <h3 class="state-title">Loading businesses...</h3>
+                <p class="state-desc">Fetching live records from LocalBizConnect backend API.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding-top: 0;">
+                <p>© 2026 LocalBizConnect. All rights reserved.</p>
+                <p><a href="index.html" style="color: #94a3b8;">Back to Home</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/businesses.js"></script>
+</body>
+</html>
